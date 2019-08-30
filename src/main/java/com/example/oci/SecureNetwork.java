@@ -13,12 +13,15 @@ public class SecureNetwork {
         if ((null == vcnId) || (vcnId.isEmpty()) || (vcnId.isBlank())) {
             return;
         }
+        System.out.println("$$$$$ Building auth provider");
         ResourcePrincipalAuthenticationDetailsProvider provider = ResourcePrincipalAuthenticationDetailsProvider
                 .builder().build();
+        System.out.println("$$$$$ Building VCN Client");
         VirtualNetworkClient virtualNetworkClient = VirtualNetworkClient.builder().build(provider);
+        System.out.println("$$$$$ Getting VCN");
         GetVcnResponse vcnResponse = virtualNetworkClient
                 .getVcn(GetVcnRequest.builder().vcnId(vcnId).build());
-        System.out.println("Retrieving security groups");
+        System.out.println("Retrieving VCN security groups");
         ListNetworkSecurityGroupsResponse securityGroupsResponse = virtualNetworkClient
                 .listNetworkSecurityGroups(
                 ListNetworkSecurityGroupsRequest.builder()
